@@ -31,7 +31,17 @@
   position: relative;
   display: flex;
   width: 200px;
-  overflow-x: hidden;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.carousel-container::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+.carousel-container > * {
+  scroll-snap-stop: always;
+  scroll-snap-align: center;
 }
 
 @media (prefers-reduced-motion: no-preference) {
