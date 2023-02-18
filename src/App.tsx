@@ -1,34 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import React from 'react';
+
+import './App.css';
+import useCarouselObserver from './hooks/useCarousel';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const IMAGES = [
+    'https://images.unsplash.com/photo-1676677470461-e39d538cf7f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1760&q=80',
+    'https://images.unsplash.com/photo-1676553138763-6f83fac7094d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+    'https://images.unsplash.com/photo-1676723939433-5e9e75560482?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=685&q=80',
+    'https://images.unsplash.com/photo-1676546121454-cf04e20b87db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+  ];
+  const [sliderIndex, setSliderIndex] = React.useState(0);
+
+  const [sliderContainerRef, decrementSlideIndex, incrementSlideIndex] =
+    useCarouselObserver({
+      sliderIndex,
+      setSliderIndex,
+    });
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="carousel-container" ref={sliderContainerRef}>
+        {IMAGES.map((image, i) => (
+          <img src={image} key={i} width="200px" height="100%"/>
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+      <div className="center">
+        <button className="prev-btn" onClick={(): void => decrementSlideIndex(IMAGES.length - 1)}>
+          Prev
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <button className="next-btn" onClick={(): void => incrementSlideIndex(IMAGES.length - 1)}>
+          Next
+        </button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <div className="">{sliderIndex}</div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
