@@ -1,5 +1,8 @@
 {
-  "name": "reactcarousel",
+  "name": "@fazalilahi/react-carousel",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/fazalilahi"
+  },
   "description": "A simple react carousel wrapper",
   "version": "0.0.1",
   "scripts": {
