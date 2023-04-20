@@ -51,7 +51,7 @@ const CarouselWrapper = React.forwardRef((props: Props, ref): JSX.Element => {
 
   const observerCallback: IntersectionObserverCallback = React.useCallback(
     ([entry]): void => {
-      if (entry.isIntersecting) {
+      if (entry?.isIntersecting) {
         setSliderIndex(
           Math.round(
             (entry.target as HTMLElement).offsetLeft / entry.target.clientWidth
@@ -68,8 +68,8 @@ const CarouselWrapper = React.forwardRef((props: Props, ref): JSX.Element => {
       rootMargin: '0px',
       threshold: 1,
     });
-    if (containerRef.current) {
-      for (const node of containerRef.current?.children) {
+    if (containerRef.current?.children) {
+      for (const node of Array.from(containerRef.current.children)) {
         observer.observe(node);
       }
       // Triggering focus for key navigation

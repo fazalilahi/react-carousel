@@ -16,6 +16,11 @@
     "outDir": "dist",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "emitDeclarationOnly": true,
-  }
+    "noUncheckedIndexedAccess": true,
+    "noEmit": true
+  },
+  "exclude": [
+    "node_modules",
+    "src/stories/**/*.ts" // Exclude all TypeScript files in the 'story' folder
+  ]
 }
