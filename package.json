@@ -1,9 +1,9 @@
 {
-  "name": "@fazalilahi/react-carousel",
+  "name": "@fazalilahi/react-library",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/fazalilahi"
   },
-  "description": "A simple react carousel wrapper",
+  "description": "A simple react library",
   "version": "0.0.3",
   "scripts": {
     "rollup": "rollup -c",
