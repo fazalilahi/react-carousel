@@ -4,7 +4,7 @@
     "registry": "https://npm.pkg.github.com/fazalilahi"
   },
   "description": "A simple react library",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "scripts": {
     "rollup": "rollup -c",
     "storybook": "storybook dev -p 6006",
