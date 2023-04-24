@@ -62,34 +62,37 @@ const CarouselWrapper = React.forwardRef((props: Props, ref): JSX.Element => {
     []
   );
 
-  React.useEffect(() => {
-    const observer = new IntersectionObserver(observerCallback, {
-      root: containerRef.current,
-      rootMargin: '0px',
-      threshold: 1,
-    });
-    if (containerRef.current?.children) {
-      for (const node of Array.from(containerRef.current.children)) {
-        observer.observe(node);
+  React.useEffect(
+    () => {
+      const observer = new IntersectionObserver(observerCallback, {
+        root: containerRef.current,
+        rootMargin: '0px',
+        threshold: 1,
+      });
+      if (containerRef.current?.children) {
+        for (const node of Array.from(containerRef.current.children)) {
+          observer.observe(node);
+        }
+        // Triggering focus for key navigation
+        //   if (keyFocus) {
+        //     containerRef.current.childNodes.item(sliderIndex).focus();
+        //   }
       }
-      // Triggering focus for key navigation
-    //   if (keyFocus) {
-    //     containerRef.current.childNodes.item(sliderIndex).focus();
-    //   }
-    }
 
-    return (): void => {
-      observer.disconnect();
-    };
-  }, [
-    // reRender
-]);
+      return (): void => {
+        observer.disconnect();
+      };
+    },
+    [
+      // reRender
+    ]
+  );
 
   return (
     <div className="carousel-container" ref={containerRef}>
       {props.children}
     </div>
   );
-})
+});
 
 export default CarouselWrapper;
